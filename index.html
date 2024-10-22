@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Layout with Sidebar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Simple Layout with Sidebar</h1>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <div class="container">
+                <h2>Welcome to our page</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                <button class="btn hover-sound">Click me</button>
+
+                <audio id="hoverSound">
+                    <source src="sounds/click.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <!-- YouTube Video Embed -->
+                <h3>Check out this video</h3>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OtcpJH-1UMo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Simple Layout. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Add this script tag at the end of the body -->
+    <script src="script.js"></script>
+</body>
+</html>
