@@ -66,6 +66,13 @@ main {
     margin: 0; /* Ensure no margin on main content */
 }
 
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
 .btn {
     display: inline-block;
     background: #333;
@@ -74,6 +81,7 @@ main {
     text-decoration: none;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
