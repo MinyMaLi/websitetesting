@@ -1,113 +1,215 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0; /* Explicitly set margin to 0 */
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
+    width: 80%;
     margin: auto;
-    padding: 0 20px;
+    overflow: hidden;
+    padding: 20px;
 }
 
+
 header {
-    background: #3498db;
-    color: #fff;
-    padding: 1rem;
+    background-color: #35424a;
+    color: #e8491d;
+    padding: 20px 0;
+    border-bottom: 3px solid #e8491d; /* This adds the orange line */
+}
+
+header h1 {
+    margin: 0;
     text-align: center;
 }
 
-.content-wrapper {
-    display: flex;
-    flex: 1 0 auto;
-    margin: 0; /* Ensure no margin on content wrapper */
+nav {
+    text-align: center;
+    margin-top: 20px;
 }
 
-.sidebar {
-    width: 200px;
-    background-color: #2c3e50;
-    padding: 20px;
-    color: #ecf0f1;
-    margin: 0; /* Ensure no margin on sidebar */
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a {
+nav a {
+    color: #ffffff;
     text-decoration: none;
-    color: #ecf0f1;
-}
-
-.sidebar ul li a:hover {
-    color: #3498db;
+    padding: 10px;
 }
 
 main {
     flex: 1;
-    padding: 2rem;
-    background-color: #ecf0f1;
-    margin: 0; /* Ensure no margin on main content */
+    padding-top: 20px;
+    margin-top: 60px;
 }
 
-.button-group {
+.content-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.image-container {
+    flex-shrink: 0;
+}
+
+.left-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-content {
+    flex-grow: 1;
+}
+
+.profile-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color: #35424a;
+    margin-top: 20px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.contact-wrapper {
+    display: flex;
+    gap: 40px;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-list li {
+    margin-bottom: 10px;
+}
+
+.form-group {
     margin-bottom: 20px;
 }
 
-.btn {
-    display: inline-block;
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 100px;
+}
+
+.submit-btn {
+    background-color: #35424a;
+    color: #ffffff;
     border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background: #555;
+.submit-btn:hover {
+    background-color: #2c3840;
 }
 
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .image-container {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .contact-wrapper {
+        flex-direction: column;
+    }
+}
+
+/* New styles for footer */
 footer {
-    background: #333;
-    color: #fff;
+    background-color: #35424a;
+    color: #ffffff;
+    padding: 10px 0;
+    position: relative;
+}
+
+footer .container {
     text-align: center;
-    padding: 1rem;
-    flex-shrink: 0;
-    margin: 0; /* Ensure no margin on footer */
-    width: 100%; /* Ensure footer spans full width */
+}
+
+#scroll-to-top {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+#scroll-to-top:hover {
+    transform: translateY(-50%) translateY(-5px);
 }
 
 footer p {
     margin: 0;
 }
 
+footer nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure the footer stays at the bottom */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 .video-container {
     position: relative;
+    width: 100%;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
+    margin-top: 20px;
 }
 
 .video-container iframe {
@@ -116,4 +218,5 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
+    border: none;
 }
