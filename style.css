@@ -220,3 +220,14 @@ html, body {
     height: 100%;
     border: none;
 }
+
+.nav-link {
+    color: #000; /* default color */
+    transition: color 0.3s ease;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.nav-link:hover {
+    color: #e8491d; /* change this to your preferred hover color */
+}
