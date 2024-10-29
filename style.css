@@ -241,53 +241,53 @@ html, body {
     overflow: hidden;  /* Add this to prevent content from spilling out */
 }
 .slideshow-container {
-    margin: 0 auto;
+    max-width: 800px;
     position: relative;
-    width: 100%;  /* Add this to ensure proper sizing */
+    margin: auto;
 }
 
-/* Adjust the slides to fit within the container */
 .slides {
-    display: none;
-    position: relative;
+    display: none;  /* Hide all slides by default */
     width: 100%;
 }
 
 .slides img {
     width: 100%;
     height: auto;
-    display: block; /* Changed from none to block */
+    display: block;  /* Prevent image spacing issues */
 }
 
 .alt-text {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: #333;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    width: 80%; /* Add this to control text width */
-    max-width: 300px; /* Add this to limit text width */
+    display: none;  /* Hide all alt text */
 }
 
-/* Adjust the fade animation to be smoother */
+/* Dots styling */
+.dots-container {
+    text-align: center;
+    padding: 10px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+
+/* Fading animation */
 .fade {
     animation-name: fade;
-    animation-duration: 1s;
-    animation-fill-mode: both;
+    animation-duration: 1.5s;
 }
 
 @keyframes fade {
-    from {opacity: 0.4} 
+    from {opacity: .4} 
     to {opacity: 1}
-}
-
-/* Show the active slide */
-.slides.active img {
-    display: block;
 }
