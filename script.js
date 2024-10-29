@@ -1,7 +1,11 @@
-// Create audio element for hover sound
+// Create audio elements for hover and click sounds
 const hoverSound = new Audio();
 hoverSound.src = './sounds/hover-sound.wav';
 hoverSound.volume = 0.2;
+
+const clickSound = new Audio();
+clickSound.src = './sounds/click-sound.mp3';
+clickSound.volume = 0.9;
 
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
@@ -9,15 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
             hoverSound.currentTime = 0;
-            hoverSound.play();
+            hoverSound.play(true);
+        });
+        
+        link.addEventListener('click', () => {
+            clickSound.currentTime = 0;
+            clickSound.play(true);
         });
     });
-
-    document.querySelectorAll('.slides').forEach(slide => {
-        slide.addEventListener('click', toggleView);
-    });
-    showSlides(slideIndex);
 });
+
 
 // Constants
 const SLIDE_INTERVAL = 2500; // Milliseconds between slides
