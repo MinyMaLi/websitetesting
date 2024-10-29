@@ -1,16 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.hover-sound');
-    const audio = document.getElementById('hoverSound');
 
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            audio.currentTime = 0; // Reset audio to start
-            audio.play().catch(e => console.error("Audio play failed:", e));
-        });
+    // Create audio element for hover sound
+    const hoverSound = new Audio();
+    hoverSound.src = './sounds/hover-sound.wav';
+    hoverSound.volume = 0.2;
 
-        button.addEventListener('mouseleave', function() {
-            audio.pause();
-            audio.currentTime = 0; // Reset audio to start
+    document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            hoverSound.currentTime = 0;
+            hoverSound.play();
         });
     });
 });

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - My Simple Website</title>
     <link rel="stylesheet" href="style.css">
-    <script src="java.js"></script>
+    <script src="script.js"></script>
     <script src="js/nav.js" defer></script>
 </head>
 <body>
@@ -13,7 +13,7 @@
         <div class="container">
             <h1>About Me</h1>
             <nav>
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
@@ -51,7 +51,33 @@
         </div>
     </main>
 
-    
+    <div class="container">
+        <div class="slideshow-box">
+            <div class="slideshow-container">
+                <div class="slides fade">
+                    <img src="/pictures/slide-first.jpg" alt="Slide 1">
+                </div>
+                <div class="slides fade">
+                    <img src="pictures/slide2.jpg" alt="Slide 2">
+                </div>
+                <div class="slides fade">
+                    <img src="pictures/slide3.jpg" alt="Slide 3">
+                </div>
+                
+                <!-- Navigation arrows -->
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                
+                <!-- Navigation dots -->
+                <div class="dots-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2023 My Simple Website. All rights reserved.</p>

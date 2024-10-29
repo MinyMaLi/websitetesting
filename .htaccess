@@ -1,0 +1,14 @@
+RewriteEngine On
+Options +FollowSymLinks -MultiViews
+
+# Remove .html extension on view
+RewriteCond %{THE_REQUEST} ^GET\ /[^?\s]+\.html
+RewriteRule (.+)\.html$ /$1 [R=301,L]
+
+# Forward .html extension internally
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Handle the root URL
+RewriteRule ^$ index.html [L]
