@@ -240,7 +240,6 @@ html, body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;  /* Add this to prevent content from spilling out */
 }
-
 .slideshow-container {
     margin: 0 auto;
     position: relative;
@@ -249,12 +248,46 @@ html, body {
 
 /* Adjust the slides to fit within the container */
 .slides {
+    display: none;
+    position: relative;
     width: 100%;
 }
 
 .slides img {
     width: 100%;
     height: auto;
-    max-height: 500px;  /* Add this to control maximum height */
-    object-fit: contain;  /* Add this to maintain aspect ratio */
+    display: block; /* Changed from none to block */
+}
+
+.alt-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%; /* Add this to control text width */
+    max-width: 300px; /* Add this to limit text width */
+}
+
+/* Adjust the fade animation to be smoother */
+.fade {
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes fade {
+    from {opacity: 0.4} 
+    to {opacity: 1}
+}
+
+/* Show the active slide */
+.slides.active img {
+    display: block;
 }
