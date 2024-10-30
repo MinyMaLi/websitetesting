@@ -121,7 +121,7 @@ class Slideshow {
   }
 
   nextSlide() {
-    // Simply advance to next slide without showing text
+    // Advance to next slide without showing text
     this.slideIndex++;
     if (this.slideIndex >= this.slides.length) {
       this.slideIndex = 0;
