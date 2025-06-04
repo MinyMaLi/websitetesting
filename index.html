@@ -1,58 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minymal Work</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOANA</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <h1>Minymal Work</h1>
-            <nav>
-                <a href="/" class="nav-link">Home</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/contact.html" class="nav-link">Contact</a>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="content-wrapper">
-                <div class="image-container">
-                    <img src="https://th.bing.com/th/id/OIP.N9bx-GCa6MFMi54QcMMzSwHaEK?rs=1&pid=ImgDetMain" alt="Placeholder Image" class="left-image">
-                </div>
-                <div class="text-content">
-                    <h2>Welcome to My Website</h2>
-                    <p>This is a simple website design with a clean and modern look. The image is now positioned on the far left side of the content area.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc euismod, euismod elit eu, euismod elit. Nulla nec nunc euismod, euismod elit eu, euismod elit.</p>
-                    
-                </div>
-            </div>
-        </div>
+  <aside class="side-menu">
+    <nav class="side-menu-links">
+      <a href="#pizza">Pizza</a>
+      <a href="#poke">Poke Bowl</a>
+      <a href="#bun-ga-nam-bo">Bun Ga Nam Bo</a>
+      <a href="#salad">Salad</a>
+      <a href="#drinks">Drinks</a>
+    </nav>
+  </aside>
 
-    </main>
+  <header>
+    <div class="logo">
+      <img src="pics/MOANA.png" alt="Tom's Food Logo" />
+      <a href="#pizza" style="text-decoration: none; color: inherit;">
+        <h1>MOANA</h1>
+      </a>
+    </div>
+    <nav>
+      <a href="#contact">Contact</a>
+      <button id="cart-btn" class="cart-btn" aria-label="Open cart">Cart 🛒</button>
+    </nav>
+  </header>
 
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 My Simple Website. All rights reserved.</p>
-            <a href="#" id="scroll-to-top" title="Scroll to top">&#9650;</a>
-        </div>
-    </footer>
-    
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-content">
+      <span id="close-cart-modal" class="close-cart-modal">&times;</span>
+      <h2>Cart</h2>
+      <ul id="cart-items-modal"></ul>
+      <p>Total: <span id="total-modal">0</span> CZK</p>
+    </div>
+  </div>
+
+  <!-- Customization Modal -->
+  <div id="custom-modal" class="cart-modal">
+    <div class="cart-modal-content">
+      <span id="close-custom-modal" class="close-cart-modal">&times;</span>
+      <h2 id="custom-modal-title">Customize your order</h2>
+      <form id="custom-form">
+        <div id="custom-options"></div>
+        <button type="submit" class="hero-btn" style="margin-top:16px;">Add to Cart</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Pizza Section -->
+  <section class="hero-container" id="pizza">
+    <div class="hero-left">
+      <h2>Margherita</h2>
+      <p>sugo, sýr, bazalka</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Margherita Pizza', 169)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 169 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza1.png" width="300" height="300" preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Di Bufala</h2>
+      <p>sugo, buvolí sýr, cherry rajčata, bazalka</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Di Bufala Pizza', 199)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 199 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza2.png" width="300" height="300" preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Šunková</h2>
+      <p>sugo, sýr, šunka</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Šunková Pizza', 179)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 179 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza3.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Diavola</h2>
+      <p>sugo, sýr, italský salám</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Diavola Pizza', 199)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 199 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza4.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Capricciosa</h2>
+      <p>sugo, sýr, šunka, žampiony, olivy</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Capricciosa Pizza', 189)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 189 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza5.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Caesar</h2>
+      <p>smetanový základ, sýr, slanina, kuřecí maso, salát, cherry rajčata, parmazán</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Caesar Pizza', 199)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 199 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza6.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Quattro Formaggi</h2>
+      <p>smetanový základ, sýr, hermelín, niva, parmazán</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Quattro Formaggi Pizza', 199)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 199 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza7.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Havai</h2>
+      <p>sugo, sýr, šunka, mango, ananas</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Havai Pizza', 199)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 199 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza8.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Spinacio</h2>
+      <p>smetanový základ, sýr, kuřecí maso, niva, špenát, česnek</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Spinacio Pizza', 189)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 189 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza9.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Prosciutto Crudo</h2>
+      <p>sugo, sýr, parmská šunka, cherry rajčata, rukola, parmazán</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Prosciutto Crudo Pizza', 209)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 209 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza10.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Vegetariana</h2>
+      <p>sugo, sýr, paprika, červená cibule, kukuřice, žampiony, bazalka</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Vegetariana Pizza', 179)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 179 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza11.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Mořské plody</h2>
+      <p>sugo, sýr, krevety, losos, cherry rajčata, bazalka</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Mořské plody Pizza', 209)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 209 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza12.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Americana</h2>
+      <p>sugo, sýr, hermelín, salám, slanina, červená cibule, kukuřice</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Americana Pizza', 189)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 189 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza13.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Brusinková</h2>
+      <p>smetanový základ, sýr, šunka, hermelín, brusinky</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Brusinková Pizza', 189)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 189 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza14.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>MOANA</h2>
+      <p>sugo, sýr, šunka, salám, slanina, kukuřice, červená cibule, parmazán</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('MOANA Pizza', 229)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 229 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/pizza15.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+
+
+  <!-- Poke Bowl Section -->
+  <section class="hero-container" id="poke">
+    <div class="hero-left">
+      <h2>Poke</h2>
+      <p>List of ingredients</p>
+      <button class="hero-btn">ADD</button>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/poke1.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Bun Ga Nam Bo Section -->
+
+  <section class="hero-container" id="bun-ga-nam-bo">
+    <div class="hero-left">
+      <h2>Bun Ga Nam Bo</h2>
+      <p>rýžové nudle, kuřecí maso, listový salát, okurka, paprika, ředkvička, mrkev, arašídy, smažená cibulka, rybí
+        omáčka</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Bun Ga Nam Bo', 179)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 179 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/bun1.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- Salad Section -->
+  <section class="hero-container" id="salad">
+    <div class="hero-left">
+      <h2>Caesar Salad</h2>
+      <p>List of ingredients</p>
+      <button class="hero-btn">ADD</button>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/salad1.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Drinks Section -->
+  <section class="hero-container" id="drinks">
+    <div class="hero-left">
+      <h2>Coca-Cola</h2>
+      <p>sda</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Coca-Cola', 45)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 45 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/drink1.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Fanta</h2>
+      <p>sda</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Fanta', 45)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 45 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/drink2.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Sprite</h2>
+      <p>sda</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Sprite', 45)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 45 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/drink3.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Capri-sun</h2>
+      <p>sda</p>
+      <div class="hero-actions">
+        <button onclick="addToCart('Capri-sun', 35)" class="hero-btn">ADD</button>
+        <p class="hero-price">Price: 35 CZK</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/drink4.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="hero-container">
+    <div class="hero-left">
+      <h2>Capri-sun</h2>
+      <p>List of ingredients</p>
+      <button class="hero-btn">ADD</button>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 300 300" class="triangle-svg">
+        <clipPath id="curvedTriangle">
+          <path d="M 150 20 Q 280 80 250 250 Q 20 280 50 50 Q 80 20 150 20 Z" />
+        </clipPath>
+        <image href="pics/drink5.jpg" width="300" height="300" clip-path="url(#curvedTriangle)"
+          preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <span>Follow us:</span>
+      <a href="https://facebook.com/" target="_blank" class="footer-icon" aria-label="Facebook">
+        <img src="pics/facebook.svg" alt="Facebook" />
+      </a>
+      <a href="https://instagram.com/" target="_blank" class="footer-icon" aria-label="Instagram">
+        <img src="pics/instagram.svg" alt="Instagram" />
+      </a>
+    </div>
+    <div class="footer-address-map">
+      <div class="footer-address">
+        <strong>Our Address:</strong><br>
+        Průběžná 573/1, 100 00 Strašnice
+        <br><br>
+        <strong>Odpovědná osoba</strong><br>
+        Ivan Lemak<br>
+        IČO: 23230631<br>
+        +420 608 896 695
+      </div>
+      <div class="footer-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.8608909289983!2d14.4889013!3d50.0701668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b930023fdbf35%3A0xb68558e329f49e81!2sBistro%20Moana!5e0!3m2!1sen!2scz!4v1749053573026!5m2!1sen!2scz"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
+
 </html>

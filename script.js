@@ -1,149 +1,154 @@
-// Create audio elements for hover and click sounds
-const hoverSound = new Audio();
-hoverSound.src = './sounds/hover-sound.wav';
-hoverSound.volume = 0.2;
+let cart = [];
 
-const clickSound = new Audio();
-clickSound.src = './sounds/click-sound.mp3';
-clickSound.volume = 0.9;
-
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            hoverSound.currentTime = 0;
-            hoverSound.play(true);
-        });
-        
-        link.addEventListener('click', () => {
-            clickSound.currentTime = 0;
-            clickSound.play(true);
-        });
-    });
-});
-
-
-// Constants
-const SLIDE_INTERVAL = 2500; // Milliseconds between slides
-const PAUSE_THRESHOLD = 300;
-
-// Selectors
-const SLIDESHOW_CONTAINER = '.slideshow-container';
-const SLIDES_SELECTOR = '.slides';
-const DOTS_SELECTOR = '.dot';
-
-class Slideshow {
-  constructor() {
-    this.slideIndex = 0;
-    this.showingImage = true;
-    this.slideIntervalId = null;
-    this.slides = document.querySelectorAll(SLIDES_SELECTOR);
-    this.dots = document.querySelectorAll(DOTS_SELECTOR);
-
-    this.setupEventListeners();
-    this.initializeSlideshow();
+function addToCart(name, price) {
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ name, price, quantity: 1 });
   }
-
-  setupEventListeners() {
-    const slideshowContainer = document.querySelector(SLIDESHOW_CONTAINER);
-    
-    if (!slideshowContainer) {
-      console.error('Slideshow container not found');
-      return;
-    }
-    
-    slideshowContainer.addEventListener('mouseenter', () => this.pause());
-    slideshowContainer.addEventListener('mouseleave', () => this.resume());
-  }
-
-  initializeSlideshow() {
-    // Set initial state
-    this.showSlide(0);
-    this.activateDot(0);
-
-    // Start slideshow
-    this.startInterval();
-  }
-
-  showSlide(index) {
-    // Reset all slides to hidden
-    this.slides.forEach((slide, i) => {
-      slide.style.display = 'none';
-      this.dots[i].classList.remove('active');
-    });
-
-    // Show current slide and dot
-    this.slides[index].style.display = 'block';
-    this.dots[index].classList.add('active');
-
-    // Always show image, hide alt text
-    const slide = this.slides[index];
-    const img = slide.querySelector('img');
-    const altText = slide.querySelector('.alt-text');
-
-    if (!img || !altText) {
-      console.error('Image or alt text not found in slide');
-      return;
-    }
-
-    // Always display image, hide text
-    img.style.display = 'block';
-    altText.style.display = 'none';
-  }
-
-  activateDot(index) {
-    if (this.dots.length > index) {
-      this.dots[index].classList.add('active');
-    }
-  }
-
-  toggleImageAndCaption(img, altText) {
-    if (this.showingImage) {
-      img.style.display = 'block';
-      altText.style.display = 'none';
-    } else {
-      img.style.display = 'none';
-      altText.style.display = 'block';
-    }
-  }
-
-  startInterval() {
-    this.slideIntervalId = setInterval(() => this.nextSlide(), SLIDE_INTERVAL);
-  }
-
-  pause() {
-    clearInterval(this.slideIntervalId);
-  }
-
-  resume() {
-    this.startInterval();
-  }
-
-  nextSlide() {
-    // Advance to next slide without showing text
-    this.slideIndex++;
-    if (this.slideIndex >= this.slides.length) {
-      this.slideIndex = 0;
-    }
-    
-    // Always show image
-    this.showingImage = true;
-    this.showSlide(this.slideIndex);
-  }
-
-  toggleShowImage() {
-    this.showingImage = !this.showingImage;
-    this.showSlide(this.slideIndex);
-  }
+  renderCart();
+  renderCartModal();
 }
 
-// Initialize slideshow only once when DOM content is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const slideshowContainer = document.querySelector(SLIDESHOW_CONTAINER);
-  if (slideshowContainer) {
-    new Slideshow();
-  } else {
-    console.error('Slideshow container not found');
+function renderCart() {
+  const cartItemsEl = document.getElementById("cart-items");
+  if (!cartItemsEl) return;
+  cartItemsEl.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    const li = document.createElement("li");
+    li.textContent = `${item.name} x ${item.quantity} = ${item.price * item.quantity} CZK`;
+    cartItemsEl.appendChild(li);
+  });
+
+  const totalEl = document.getElementById("total");
+  if (totalEl) totalEl.textContent = total;
+}
+
+// Render cart in modal
+function renderCartModal() {
+  const cartItemsModal = document.getElementById("cart-items-modal");
+  if (!cartItemsModal) return;
+  cartItemsModal.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    const li = document.createElement("li");
+    li.textContent = `${item.name} x ${item.quantity} = ${item.price * item.quantity} CZK`;
+    cartItemsModal.appendChild(li);
+  });
+
+  const totalModal = document.getElementById("total-modal");
+  if (totalModal) totalModal.textContent = total;
+}
+
+// Modal open/close logic
+document.addEventListener("DOMContentLoaded", function () {
+  const cartBtn = document.getElementById("cart-btn");
+  const cartModal = document.getElementById("cart-modal");
+  const closeCartModal = document.getElementById("close-cart-modal");
+
+  if (cartBtn && cartModal && closeCartModal) {
+    cartBtn.onclick = function () {
+      renderCartModal();
+      cartModal.style.display = "block";
+    };
+    closeCartModal.onclick = function () {
+      cartModal.style.display = "none";
+    };
+    window.onclick = function (event) {
+      if (event.target === cartModal) {
+        cartModal.style.display = "none";
+      }
+    };
+  }
+});
+
+// Open customization modal for Poke Bowl and Salad
+function openCustomModal(product) {
+  const modal = document.getElementById("custom-modal");
+  const closeBtn = document.getElementById("close-custom-modal");
+  const form = document.getElementById("custom-form");
+  const optionsDiv = document.getElementById("custom-options");
+  const title = document.getElementById("custom-modal-title");
+
+  // Set title and options based on product
+  if (product === "Poke Bowl") {
+    title.textContent = "Customize your Poke Bowl";
+    optionsDiv.innerHTML = `
+      <br><br>
+      <label>Meat:<br>
+    <input type="radio" name="meat" value="Chicken"> Chicken<br>
+    <input type="radio" name="meat" value="Salmon"> Salmon<br>
+    <input type="radio" name="meat" value="Shrimp"> Shrimp<br>
+  </label>
+    `;
+  } else if (product === "Salad") {
+    title.textContent = "Customize your Salad";
+    optionsDiv.innerHTML = `
+      <label>Meat:
+        <select name="meat" required>
+          <option value="">Select</option>
+          <option value="Chicken">Chicken</option>
+          <option value="Tuna">Tuna</option>
+          <option value="No meat">No meat</option>
+        </select>
+      </label>
+      <br><br>
+      <label>Extras:<br>
+    <input type="radio" name="extras" value="Cheese"> Cheese<br>
+    <input type="radio" name="extras" value="Croutons"> Croutons<br>
+    <input type="radio" name="extras" value="Egg"> Egg<br>
+  </label>
+    `;
+  }
+
+  modal.style.display = "block";
+
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  };
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  form.onsubmit = function (e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const meat = formData.get("meat");
+    const extras = formData.getAll("extras");
+    let name = product;
+    if (meat) name += ` (${meat})`;
+    if (extras.length) name += ` + ${extras.join(", ")}`;
+    let price = product === "Poke Bowl" ? 179 : 159; // Example prices
+    addToCart(name, price);
+    modal.style.display = "none";
+    form.reset();
+  };
+}
+
+// Attach to ADD buttons for Poke Bowl and Salad
+document.addEventListener("DOMContentLoaded", function () {
+  // Poke Bowl
+  const pokeAddBtn = document.querySelector('#poke .hero-btn');
+  if (pokeAddBtn) {
+    pokeAddBtn.onclick = function (e) {
+      e.preventDefault();
+      openCustomModal("Poke Bowl");
+    };
+  }
+  // Salad
+  const saladAddBtn = document.querySelector('#salad .hero-btn');
+  if (saladAddBtn) {
+    saladAddBtn.onclick = function (e) {
+      e.preventDefault();
+      openCustomModal("Salad");
+    };
   }
 });
