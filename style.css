@@ -1,10 +1,10 @@
-/* General styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #fff; /* Change to white */
   color: #000;            /* Change text to black */
 }
+
 
 /* Header styles */
 header {
@@ -13,23 +13,27 @@ header {
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Center content horizontally */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;         /* Make header span full viewport width */
-  z-index: 1100;        /* Above side menu */
+  width: 100vw;
+  z-index: 1100;
   box-sizing: border-box;
+  height: 80px; /* Set a fixed height for vertical centering */
 }
 
 /* Logo area */
 .logo {
   display: flex;
   align-items: center;
+  flex: 1 1 0%; /* Allow logo to grow/shrink */
+  height: 100%;
+  position: relative;
 }
 
 .logo img {
-  height: 50px;
+  height: 80px;
   width: auto;
   margin-right: 10px;
 }
@@ -38,97 +42,15 @@ header {
   margin: 0;
   font-size: 1.5em;
   color: white;
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  white-space: nowrap;
+  pointer-events: none; /* So the link doesn't interfere */
+  line-height: 1;
 }
 
-/* Navigation buttons */
-nav {
-  display: flex;
-  gap: 15px;
-}
-
-nav a {
-  color: #fff;
-  background-color: #c40000;
-  padding: 10px 15px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-nav a:hover {
-  background-color: #a30000;
-}
-
-/* Hero section styles */
-.hero-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 32px auto;             /* Less vertical space between cards */
-  max-width: 700px;              /* Suitable for multiple containers */
-  padding: 28px 18px;            /* Compact padding */
-  gap: 28px;
-  border: 2px solid #c40000;     /* Slightly thinner border */
-  border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-   scroll-margin-top: 100px; /* Ensure smooth scrolling */
-}
-
-.hero-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.hero-left h2 {
-  margin: 0 0 8px 0;
-  font-size: 1.6em;
-}
-
-.hero-left p {
-  margin: 0 0 16px 0;
-  font-size: 1em;
-}
-
-.hero-btn {
-  background-color: #c40000;
-  color: #fff;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 5px;
-  font-size: 1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.hero-btn:hover {
-  background-color: #a30000;
-}
-
-.hero-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.triangle-svg {
-  width: 180px;
-  height: 180px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-}
-
-/* Ensure the footer stays at the bottom */
-html, body {
-    height: 100%;
-    margin: 0;
-}
 
 /* Footer styles */
 .site-footer {
@@ -138,9 +60,11 @@ html, body {
   color: #fff;
   text-align: center;
   width: 100vw;
-  margin-left: calc(-200px); /* Pull footer back to the very left */
-  box-sizing: border-box;
   position: relative;
+  left: 50%;
+  right: 0;
+  transform: translateX(-50%);
+  box-sizing: border-box;
   z-index: 1101;          /* Make sure it's above the side menu */
 }
 
@@ -155,7 +79,6 @@ html, body {
   width: 28px;
   height: 28px;
   vertical-align: middle;
-  filter: brightness(0) invert(1);
   transition: filter 0.2s;
 }
 
@@ -185,107 +108,180 @@ html, body {
   height: 120px;
 }
 
-/* Rectangle Side Menu */
-.side-menu {
-  position: fixed;
-  top: 40px;              /* A little down from the very top */
-  left: 0;
-  width: 200px;           /* Wider menu */
-  height: 50vh;           /* Half of the page height */
-  background: #ffffff;
-  z-index: 1000;
+/* Center the hero section vertically and horizontally */
+#hero {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.08);
-  border-radius: 0 20px 20px 0; /* Only round top-right and bottom-right */
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Adjust as needed */
+  margin-top: 80px; /* Offset for fixed header */
 }
 
-.side-menu-links {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  margin-left: 24px;
-  gap: 24px;
+#hero img {
+  max-width: 90vw;
+  max-height: 60vh;
+  height: auto;
+  width: auto;
+  display: block;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  object-fit: contain;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
 }
 
-/* Push main content to the right of the menu */
-body {
-  margin-left: 200px;
-  padding-top: 60px;    /* Adjust if your header is taller */
-  padding-bottom: 60px; /* Adjust if your footer is taller */
+#hero img:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
 }
 
-/* Responsive: hide menu on small screens */
-@media (max-width: 600px) {
-  .side-menu {
-    display: none;
-  }
-  body {
-    margin-left: 0;
-  }
-}
-
-/* Cart Modal Styles */
-.cart-btn {
-  background: #c40000;
-  color: #fff;
+.contact-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background: #e03636;
+  color: #000;
   border: none;
-  border-radius: 5px;
-  padding: 10px 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 10px;
+  border-radius: 22px;
   font-size: 1em;
-  transition: background 0.2s;
-}
-.cart-btn:hover {
-  background: #a30000;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-.cart-modal {
-  display: none; /* Hidden by default */
+.contact-btn:hover,
+.contact-btn:focus {
+  background: #ffe082;
+  color: #222;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
   position: fixed;
   z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background: rgba(0,0,0,0.4);
-}
-
-.cart-modal-content {
-  background: #fff;
-  margin: 80px auto;
-  padding: 24px 32px;
-  border-radius: 16px;
-  max-width: 400px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-  position: relative;
-}
-
-.close-cart-modal {
-  position: absolute;
-  top: 12px;
-  right: 18px;
-  font-size: 2em;
-  color: #c40000;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.hero-actions {
-  display: flex;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 8px;
+}
+.modal img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  cursor: zoom-in;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+.modal img.zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+  z-index: 2200;
+}
+.modal-close {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 2100;
 }
 
-.hero-price {
-  margin: 0;
-  font-weight: normal;
-  color: #333;
-  font-size: 1em;
+.delivery-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 32px 0 0 0;
 }
+
+.delivery-btn {
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s, transform 0.2s;
+  background: #222;
+}
+
+.delivery-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+}
+
+.wolt-btn { background: #009de0; }
+.bolt-btn { background: #32d074; }
+.foodora-btn { background: #e3006e; }
+
+/* Hide burger by default, show nav links */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  z-index: 1200;
+}
+.burger span {
+  display: block;
+  width: 28px;
+  height: 4px;
+  margin: 4px 0;
+  background: #e03636;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile menu hidden by default */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: #222;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 1201;
+}
+.mobile-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 24px;
+  font-size: 1.1em;
+  border-bottom: 1px solid #444;
+  transition: background 0.2s;
+  display: block;
+}
+.mobile-link:last-child { border-bottom: none; }
+.mobile-link:hover { background: #e03636; color: #000; }
+
+/* Responsive nav: hide links, show burger */
+@media (max-width: 700px) {
+  nav {
+    position: relative;
+  }
+  .nav-link {
+    display: none !important;
+  }
+  .burger {
+    display: flex;
+  }
+}
+
+/* Show mobile menu when active */
+.mobile-menu.active {
+  display: flex;
+}
+
