@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuBtn = document.querySelector('a[href="/menu.html"].contact-btn');
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
+  const mobileAllergies = document.getElementById('mobileAllergies');
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
   allergiesBtn.addEventListener('click', function(e) {
     e.preventDefault();
@@ -52,4 +54,21 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileMenu.classList.remove('active');
     });
   });
+
+  if (mobileAllergies) {
+    mobileAllergies.addEventListener('click', function(e) {
+      e.preventDefault();
+      modalImg.src = 'pics/allergies.png'; // Change to your allergies image path
+      modal.style.display = 'flex';
+      mobileMenu.classList.remove('active');
+    });
+  }
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modalImg.src = 'pics/menu.png'; // Change to your menu image path
+      modal.style.display = 'flex';
+      mobileMenu.classList.remove('active');
+    });
+  }
 });
