@@ -267,8 +267,74 @@ header {
 .mobile-link:last-child { border-bottom: none; }
 .mobile-link:hover { background: #e03636; color: #000; }
 
-/* Responsive nav: hide links, show burger */
+/* Menu section styles */
+.menu-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.menu-section h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 2em;
+  color: #e03636;
+}
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.menu-item {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 18px;
+  width: 260px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+
+.menu-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.menu-item h3 {
+  margin: 8px 0 6px 0;
+  font-size: 1.2em;
+  color: #222;
+}
+
+.menu-item p {
+  font-size: 1em;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.menu-item .price {
+  font-weight: bold;
+  color: #e03636;
+  font-size: 1.1em;
+}
+
+/* Responsive for mobile */
 @media (max-width: 700px) {
+  .menu-grid {
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+  }
+  .menu-item {
+    width: 95vw;
+    max-width: 350px;
+  }
   nav {
     position: relative;
   }
