@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   menuBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    modalImg.src = 'pics/menu.png'; // Change to your menu image path
+    modalImg.src = 'pics/menu.jpeg'; // Change to your menu image path
     modal.style.display = 'flex';
   });
 
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      modalImg.src = 'pics/menu.png'; // Change to your menu image path
+      modalImg.src = 'pics/menu.jpeg'; // Change to your menu image path
       modal.style.display = 'flex';
       mobileMenu.classList.remove('active');
     });
